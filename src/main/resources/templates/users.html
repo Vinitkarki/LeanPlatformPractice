@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
+        <a class="navbar-brand" th:href="@{/}">Registration and Login System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,6 +21,9 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/deleteUser}">Delete</a>
                 </li>
             </ul>
         </div>
@@ -33,16 +36,16 @@
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+
             <th>Email</th>
+            <th>ApiKey</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each = "user : ${users}">
-            <td th:text = "${user.firstName}"></td>
-            <td th:text = "${user.lastName}"></td>
+<!--        <tr th:each = "user : ${users}">-->
+        <tr>
             <td th:text = "${user.email}"></td>
+            <td th:text = "${user.apiKey}"></td>
         </tr>
         </tbody>
     </table>

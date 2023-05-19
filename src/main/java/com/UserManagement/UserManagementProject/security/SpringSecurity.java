@@ -29,12 +29,16 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.csrf().disable()
                 .authorizeHttpRequests((authorize)->
-                        authorize.requestMatchers("/register/**").permitAll()
+                        authorize.requestMatchers("/").permitAll()
+                                .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/deleteUser").hasRole("ADMIN")
+                                .requestMatchers("/cleanContent").hasRole("ADMIN")
+                                .requestMatchers("/clearCache").permitAll()
                 ).formLogin(
                         form-> form.loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/users",true)
                                 .permitAll()
                 ).logout(
                         logout-> logout

@@ -1,12 +1,17 @@
 package com.UserManagement.UserManagementProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,6 +19,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="users")
 public class User {
 
     @Id
@@ -22,6 +28,8 @@ public class User {
     private String name;
     private String email;
     private String password;
+
+
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
@@ -32,4 +40,9 @@ public class User {
     private List<Role> roles=new ArrayList<>();
 
 
+    @JsonIgnore
+    private String apiKey;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }
